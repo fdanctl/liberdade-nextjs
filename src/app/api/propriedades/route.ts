@@ -1,18 +1,17 @@
-import { FindPropriedades } from "@/data/propriedades";
 import {
   RequestPropriedadesDTO,
-  ResponsePropriedadesDTO,
+  ResponseMessageDTO,
 } from "@/dto/propriedades";
-import { CreatePropriedade } from "@/services/propriedades";
+import { CreatePropriedade, ReadPropriedades } from "@/services/propriedades";
 
 export async function GET() {
-  const result = await FindPropriedades();
+  const result = await ReadPropriedades();
   Response.json(result);
 }
 
 export async function POST(request: Request) {
   const body: RequestPropriedadesDTO = await request.json();
   const id = await CreatePropriedade(body);
-  const response: ResponsePropriedadesDTO = {id: id, message: "adicionado com sucesso"}
+  const response: ResponseMessageDTO = {id: id, message: "adicionado com sucesso"}
   Response.json(response);
 }

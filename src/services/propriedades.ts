@@ -5,7 +5,7 @@ import {
   InsertPropriedade,
   RemovePropriedade,
 } from "@/data/propriedades";
-import { RequestPropriedadesDTO } from "@/dto/propriedades";
+import { RequestPropriedadesDTO, ResponsePropriedadesDTO } from "@/dto/propriedades";
 import { PropriedadeInterface } from "@/models/propriedades";
 
 export async function CreatePropriedade(body: RequestPropriedadesDTO) {
@@ -16,7 +16,7 @@ export async function ReadPropriedadeById(id: string) {
   return await FindPropriedadeById(id);
 }
 
-export async function ReadPropriedades() {
+export async function ReadPropriedades(): Promise <ResponsePropriedadesDTO[]> {
   const props = await FindPropriedades();
   return props.map((e) => ({
     ...e,
